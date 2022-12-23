@@ -1,0 +1,58 @@
+server:
+  port: 8098
+spring:
+  profiles:
+    active: dev
+  application:
+    name: xiaoyu-gateway
+  redis:
+    host: 192.168.5.20 # Redis?????
+    port: 6379 # Redis???????
+    database: 1 #Redis????????0
+    password:   # Redis?????????????
+    connect-timeout: 5000 # ??????????
+    jedis:
+      pool:
+        max-active: 8 # ????????????????????
+        max-wait: -1  # ???????????????????????
+        max-idle: 8 # ???????????
+        min-idle: 0 # ???????????
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.5.20:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true # ??????
+      routes: #????
+        - id: com-saas-user-consumer          #?????
+          uri: http://localhost:8083/com-saas-user-consumer
+          predicates:
+            - Path=/userConsumer/**
+          filters:
+            - StripPrefix=1
+        - id: com-saas-auth                  #????
+          uri: lb://com-saas-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+        - id: com-saas-goods-consumer             #??????
+          uri: http://localhost:8085/com-saas-goods-consumer
+          predicates:
+            - Path=/goodsConsumer/**
+          filters:
+            - StripPrefix=1
+        - id: com-saas-seller-consumer             #?????
+          uri: lb://com-saas-seller-consumer
+          predicates:
+            - Path=/sellerConsumer/**
+          filters:
+            - StripPrefix=1
+        - id: com-saas-platform-consumer             #?????
+          uri: lb://com-saas-platform-consumer
+          predicates:
+            - Path=/platformConsumer/**
+          filters:
+            - StripPrefix=1

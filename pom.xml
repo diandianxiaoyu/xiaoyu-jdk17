@@ -18,7 +18,7 @@
         <java.version>17</java.version>
     </properties>
     <modules>
-        <module>xiaoyu-common</module>
+        <module>xiaoyu-gateway</module>
     </modules>
     <dependencyManagement>
         <dependencies>

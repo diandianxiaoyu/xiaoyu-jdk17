@@ -1,13 +1,13 @@
-package com.xiaoyu.common;
+package com.xiaoyu.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class XiaoyuCommonApplicationTests {
+class XiaoyuGatewayApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
